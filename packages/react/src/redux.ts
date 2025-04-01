@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Scope } from '@sentry/core';
+import { StoreEnhancer } from "redux";
 import { addBreadcrumb, addNonEnumerableProperty, getClient, getCurrentScope, getGlobalScope } from '@sentry/core';
 
 interface Action<T = any> {
@@ -86,7 +87,7 @@ const defaultOptions: SentryEnhancerOptions = {
  *
  * @param enhancerOptions Options to pass to the enhancer
  */
-function createReduxEnhancer(enhancerOptions?: Partial<SentryEnhancerOptions>): any {
+function createReduxEnhancer(enhancerOptions?: Partial<SentryEnhancerOptions>): StoreEnhancer {
   // Note: We return an any type as to not have type conflicts.
   const options = {
     ...defaultOptions,
